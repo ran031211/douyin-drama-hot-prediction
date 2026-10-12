@@ -1,0 +1,273 @@
+{
+  "heat_distribution": {
+    "min": 4429.6428,
+    "p25": 4609.27655,
+    "median": 4661.0593,
+    "p75": 4776.443,
+    "p90": 4969.94634,
+    "max": 6849.1671,
+    "threshold": 4814.86684,
+    "cv_pct": 5.97
+  },
+  "rank_structure": {
+    "tagged_dramas": 99,
+    "top50_median_wan": 5516.0,
+    "tail_median_wan": 4601.0,
+    "spearman_rank_heat": -0.956
+  },
+  "genre_profile": [
+    {
+      "genre": "萌宝",
+      "n": 34,
+      "heat": 4821.9,
+      "hot": 50.0,
+      "rating": 9.47
+    },
+    {
+      "genre": "宫廷",
+      "n": 19,
+      "heat": 4750.4,
+      "hot": 47.37,
+      "rating": 9.0
+    },
+    {
+      "genre": "总裁",
+      "n": 34,
+      "heat": 4716.46,
+      "hot": 29.41,
+      "rating": 7.56
+    },
+    {
+      "genre": "古代",
+      "n": 103,
+      "heat": 4658.87,
+      "hot": 27.18,
+      "rating": 9.22
+    },
+    {
+      "genre": "异能",
+      "n": 82,
+      "heat": 4681.34,
+      "hot": 25.61,
+      "rating": 8.78
+    },
+    {
+      "genre": "脑洞",
+      "n": 143,
+      "heat": 4661.48,
+      "hot": 24.48,
+      "rating": 9.0
+    },
+    {
+      "genre": "豪门",
+      "n": 151,
+      "heat": 4652.28,
+      "hot": 20.53,
+      "rating": 8.56
+    },
+    {
+      "genre": "重生",
+      "n": 167,
+      "heat": 4653.86,
+      "hot": 20.36,
+      "rating": 8.67
+    },
+    {
+      "genre": "都市",
+      "n": 359,
+      "heat": 4662.37,
+      "hot": 20.33,
+      "rating": 8.33
+    },
+    {
+      "genre": "乡村",
+      "n": 253,
+      "heat": 4669.65,
+      "hot": 19.76,
+      "rating": 9.0
+    },
+    {
+      "genre": "穿越",
+      "n": 143,
+      "heat": 4663.61,
+      "hot": 19.58,
+      "rating": 9.0
+    },
+    {
+      "genre": "系统",
+      "n": 74,
+      "heat": 4647.77,
+      "hot": 18.92,
+      "rating": 9.0
+    },
+    {
+      "genre": "玄幻",
+      "n": 22,
+      "heat": 4628.35,
+      "hot": 18.18,
+      "rating": 9.17
+    },
+    {
+      "genre": "年代",
+      "n": 225,
+      "heat": 4669.65,
+      "hot": 17.78,
+      "rating": 8.78
+    },
+    {
+      "genre": "逆袭",
+      "n": 408,
+      "heat": 4660.27,
+      "hot": 17.4,
+      "rating": 8.89
+    },
+    {
+      "genre": "种田",
+      "n": 102,
+      "heat": 4671.07,
+      "hot": 16.67,
+      "rating": 8.89
+    },
+    {
+      "genre": "恋爱",
+      "n": 87,
+      "heat": 4646.84,
+      "hot": 16.09,
+      "rating": 8.33
+    },
+    {
+      "genre": "职场",
+      "n": 19,
+      "heat": 4656.76,
+      "hot": 15.79,
+      "rating": 7.11
+    },
+    {
+      "genre": "架空",
+      "n": 28,
+      "heat": 4633.51,
+      "hot": 14.29,
+      "rating": 9.56
+    },
+    {
+      "genre": "剧情",
+      "n": 325,
+      "heat": 4655.8,
+      "hot": 13.85,
+      "rating": 8.44
+    }
+  ],
+  "episodes": {
+    "median": 95.0,
+    "spearman_heat": 0.1586,
+    "bins": [
+      {
+        "range": "18–69",
+        "hot_rate_pct": 12.23
+      },
+      {
+        "range": "69–80",
+        "hot_rate_pct": 16.92
+      },
+      {
+        "range": "80–95",
+        "hot_rate_pct": 15.91
+      },
+      {
+        "range": "95–116",
+        "hot_rate_pct": 18.57
+      },
+      {
+        "range": "116–147",
+        "hot_rate_pct": 23.81
+      },
+      {
+        "range": "147–500",
+        "hot_rate_pct": 33.08
+      }
+    ]
+  },
+  "engagement": {
+    "ep1_digg_mean_spearman": 0.1022,
+    "ep1_hot_ratio_spearman": 0.0983,
+    "digg_d1_hot_pct": 16.0,
+    "digg_d8_hot_pct": 31.0
+  },
+  "rating": {
+    "mean": 8.095,
+    "median": 8.667,
+    "spearman_heat": 0.0167
+  },
+  "correlation": {
+    "top10": [
+      {
+        "feature": "log_hot_digg_sum",
+        "group": "评论互动",
+        "rho": 0.2391
+      },
+      {
+        "feature": "hot_digg_mean",
+        "group": "评论互动",
+        "rho": 0.235
+      },
+      {
+        "feature": "log_hot_digg_max",
+        "group": "评论互动",
+        "rho": 0.2153
+      },
+      {
+        "feature": "hot_text_len",
+        "group": "文本态度",
+        "rho": 0.1636
+      },
+      {
+        "feature": "episodes",
+        "group": "内容属性",
+        "rho": 0.1586
+      },
+      {
+        "feature": "log_episodes",
+        "group": "内容属性",
+        "rho": 0.1586
+      },
+      {
+        "feature": "hot_hot_ratio",
+        "group": "评论互动",
+        "rho": 0.1571
+      },
+      {
+        "feature": "hot_cmt_cnt",
+        "group": "评论互动",
+        "rho": 0.1427
+      },
+      {
+        "feature": "ep1_pos_ratio",
+        "group": "文本态度",
+        "rho": 0.1295
+      },
+      {
+        "feature": "tag_萌宝",
+        "group": "内容属性",
+        "rho": 0.125
+      }
+    ],
+    "group_mean_abs": {
+      "观众口碑": 1.73,
+      "内容属性": 4.16,
+      "文本态度": 8.53,
+      "评论互动": 12.67
+    }
+  },
+  "time_pattern": {
+    "monthly": {
+      "2026-05": 15,
+      "2026-06": 23,
+      "2026-07": 384,
+      "2026-08": 1689,
+      "2026-09": 15097,
+      "2026-10": 729
+    },
+    "peak_hour": 20,
+    "evening_share_pct": 33.17
+  }
+}

@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-head">
+  <h1 class="page-head__title">总览</h1>
+  <span class="page-head__desc"><span id="head-scale">—</span> 部剧集样本 · 指标取自 hold-out 测试集</span>
+</div>
+
+<section class="kpis" id="kpis"></section>
+
+<section class="cols cols--2-1">
+  <div class="card">
+    <div class="card__head">
+      <span class="card__title">题材爆款率与置信区间</span>
+      <span class="card__note">95% Wilson 区间 · 虚线 = 全站基准</span>
+    </div>
+    <div class="card__body">
+      <div class="chart chart--tall" id="chart-genre"></div>
+    </div>
+  </div>
+
+  <div class="stack">
+    <div class="card">
+      <div class="card__head"><span class="card__title">部署模型</span></div>
+      <div class="card__body card__body--flush">
+        <table class="table" id="model-table">
+          <thead>
+            <tr><th>模型</th><th>维度</th><th>树</th><th class="is-num">hold-out AUC</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card__head">
+        <span class="card__title">在线回测自检</span>
+        <span class="card__note" id="backtest-state">计算中</span>
+      </div>
+      <div class="card__body" id="backtest-body">
+        <div class="empty">正在复现 hold-out 划分…</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cols cols--1-2">
+  <div class="card">
+    <div class="card__head">
+      <span class="card__title">全局影响因素</span>
+      <span class="card__note">按特征组着色</span>
+    </div>
+    <div class="card__body">
+      <div class="chart chart--tall" id="chart-importance"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__head">
+      <span class="card__title">题材选题决策</span>
+      <span class="card__note" id="tier-baseline"></span>
+    </div>
+    <div class="card__body">
+      <div class="tiers" id="tiers"></div>
+    </div>
+  </div>
+</section>
+
+<section class="cols cols--2">
+  <div class="card">
+    <div class="card__head">
+      <span class="card__title">双标签组合（样本 ≥ <span id="combo-min">15</span> 部）</span>
+      <span class="card__note">共 <span id="combo-n">—</span> 对组合</span>
+    </div>
+    <div class="card__body card__body--flush">
+      <table class="table">
+        <thead><tr><th>组合</th><th class="is-num">爆款率</th><th class="is-num">样本量</th></tr></thead>
+        <tbody id="combo-best"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card__head">
+      <span class="card__title">双标签组合（低分区）</span>
+      <span class="card__note">同等条件下应回避</span>
+    </div>
+    <div class="card__body card__body--flush">
+      <table class="table">
+        <thead><tr><th>组合</th><th class="is-num">爆款率</th><th class="is-num">样本量</th></tr></thead>
+        <tbody id="combo-worst"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block vendor %}<script src="{{ url_for('static', filename='vendor/echarts.min.js') }}"></script>{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}

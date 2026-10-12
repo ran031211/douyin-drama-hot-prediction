@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-head">
+  <h1 class="page-head__title">数据集</h1>
+  <span class="page-head__desc">
+    抖音「AI 短剧榜」2026 年 5—10 月上榜剧集
+  </span>
+</div>
+
+<section class="kpis" id="ds-kpis"></section>
+
+<section class="card">
+  <div class="card__head">
+    <span class="card__title">剧集清单</span>
+    <span class="card__note" id="ds-total"></span>
+  </div>
+  <div class="card__body">
+    <div class="row">
+      <input type="text" id="q-keyword" placeholder="搜索剧名或简介" style="max-width:260px">
+      <select id="q-sort" style="max-width:170px">
+        <option value="heat">按热度排序</option>
+        <option value="episodes">按集数排序</option>
+        <option value="rating">按热评均分排序</option>
+        <option value="rank">按榜单排名排序</option>
+      </select>
+      <select id="q-order" style="max-width:120px">
+        <option value="desc">降序</option>
+        <option value="asc">升序</option>
+      </select>
+      <button class="btn" id="btn-query">查询</button>
+      <span class="spacer"></span>
+      <button class="btn" id="btn-prev">上一页</button>
+      <button class="btn" id="btn-next">下一页</button>
+    </div>
+  </div>
+  <div class="card__body card__body--flush">
+    <div class="table__scroll">
+      <table class="table" id="tbl-dramas">
+        <thead>
+          <tr>
+            <th>剧名</th><th>题材</th><th class="is-num">集数</th>
+            <th class="is-num">热度（万）</th><th class="is-num">热评均分</th>
+            <th class="is-num">榜位</th><th>题材分档</th><th>简介</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="pager">
+      <span class="pager__info" id="page-info">—</span>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+<script src="{{ url_for('static', filename='js/dataset.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page_title }} · {{ app_name }}</title>
+  <script>
+    /* 首帧前应用主题偏好，避免暗色闪白（FOUC）。
+       优先级：?theme= 参数（临时预览，不写入存储） > localStorage > 跟随系统。 */
+    (function () {
+      try {
+        var q = new URLSearchParams(location.search).get("theme");
+        var s = localStorage.getItem("theme");
+        var m = (q === "dark" || q === "light") ? q
+              : (s === "dark" || s === "light") ? s : null;
+        if (m) document.documentElement.setAttribute("data-theme", m);
+      } catch (e) { /* 隐私模式等场景静默降级为跟随系统 */ }
+    })();
+  </script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/tokens.css') }}?v=3">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}?v=3">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}?v=3">
+</head>
+<body>
+  {% include "partials/nav.html" %}
+
+  <main class="page">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <span>{{ app_name }}</span>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/http.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+  {% block vendor %}{% endblock %}
+  {% block scripts %}{% endblock %}
+</body>
+</html>

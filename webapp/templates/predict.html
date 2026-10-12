@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-head">
+  <h1 class="page-head__title">新剧预测</h1>
+  <span class="page-head__desc">仅需上线前可得的信息：剧名、简介、题材、集数</span>
+</div>
+
+<section class="cols cols--1-2">
+  <!-- 左：输入 -->
+  <div class="card">
+    <div class="card__head">
+      <span class="card__title">剧集信息</span>
+      <span class="card__note">题材最多 {{ max_genres }} 个</span>
+    </div>
+    <div class="card__body stack">
+      <div class="field">
+        <label class="field__label" for="f-title">剧名</label>
+        <input type="text" id="f-title" maxlength="80" placeholder="例如：重生之我在古代当皇后">
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="f-synopsis">剧情简介</label>
+        <textarea id="f-synopsis" maxlength="4000"
+                  placeholder="粘贴剧集简介，系统会自动抽取爽点标签"></textarea>
+        <span class="field__hint"><span id="f-synopsis-len">0</span> / 4000 字</span>
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="f-episodes">总集数</label>
+        <input type="number" id="f-episodes" min="1" max="9999" value="100">
+      </div>
+
+      <div class="field">
+        <span class="field__label">题材标签</span>
+        <div class="chips" id="f-genres"></div>
+      </div>
+
+      <div class="field">
+        <span class="field__label">自动识别</span>
+        <div class="row">
+          <span class="badge" id="auto-plots">尚未识别到爽点标签</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <button class="btn btn--primary" id="btn-predict">开始预测</button>
+        <button class="btn" id="btn-example">填入示例</button>
+        <button class="btn" id="btn-clear">清空</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 右：结果 -->
+  <div class="stack">
+    <div class="card">
+      <div class="card__head">
+        <span class="card__title">预测结果</span>
+        <span class="card__note" id="result-note"></span>
+      </div>
+      <div class="card__body" id="result-body" aria-live="polite">
+        <div class="empty">填写左侧信息后点击「开始预测」</div>
+      </div>
+    </div>
+
+    <div class="card" id="card-wayback" hidden>
+      <div class="card__head">
+        <span class="card__title">追加观众反馈</span>
+        <span class="card__note">可选 · 用于对比全特征模型</span>
+      </div>
+      <div class="card__body stack">
+        <div class="slider-row">
+          <span class="slider-row__label">热评均分</span>
+          <input type="range" id="e-rating" min="0" max="10" step="0.1" value="9.0">
+          <span class="slider-row__value" id="e-rating-v">9.0</span>
+        </div>
+        <div class="slider-row">
+          <span class="slider-row__label">热评平均点赞</span>
+          <input type="range" id="e-hotdigg" min="0" max="2000" step="1" value="40">
+          <span class="slider-row__value" id="e-hotdigg-v">40</span>
+        </div>
+        <div class="slider-row">
+          <span class="slider-row__label">第一集评论点赞</span>
+          <input type="range" id="e-ep1digg" min="0" max="3000" step="1" value="50">
+          <span class="slider-row__value" id="e-ep1digg-v">50</span>
+        </div>
+        <div class="slider-row">
+          <span class="slider-row__label">正面情感占比</span>
+          <input type="range" id="e-pos" min="0" max="1" step="0.01" value="0.4">
+          <span class="slider-row__value" id="e-pos-v">40%</span>
+        </div>
+        <div class="slider-row">
+          <span class="slider-row__label">催更评论占比</span>
+          <input type="range" id="e-urge" min="0" max="1" step="0.01" value="0.1">
+          <span class="slider-row__value" id="e-urge-v">10%</span>
+        </div>
+        <label class="check">
+          <input type="checkbox" id="e-enable">
+          <span>提交时一并计算全特征模型</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="card" id="card-factors" hidden>
+      <div class="card__head">
+        <span class="card__title">关键推动因子</span>
+        <span class="card__note">SHAP 分箱查表 · 红为正向、绿为负向</span>
+      </div>
+      <div class="card__body">
+        <div class="factors" id="factors"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="card" id="card-prior" hidden>
+  <div class="card__head">
+    <span class="card__title">所选题材的历史先验</span>
+    <span class="card__note">与预测结论交叉验证</span>
+  </div>
+  <div class="card__body card__body--flush">
+    <table class="table">
+      <thead>
+        <tr><th>题材</th><th class="is-num">样本量</th><th class="is-num">爆款率</th>
+            <th class="is-num">95% 置信区间</th><th>分档</th></tr>
+      </thead>
+      <tbody id="prior-body"></tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+<script src="{{ url_for('static', filename='js/predict.js') }}"></script>
+{% endblock %}

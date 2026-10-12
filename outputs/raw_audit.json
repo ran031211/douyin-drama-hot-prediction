@@ -1,0 +1,41 @@
+{
+  "drama_list": {
+    "raw_rows": 800,
+    "kept": 800,
+    "dropped_dup": 0,
+    "dropped_invalid": 0,
+    "heat_text_match_rate_pct": 100.0
+  },
+  "hot_comments": {
+    "raw_rows": 6807,
+    "kept": 6769,
+    "dropped_full_dup": 0,
+    "dropped_biz_dup": 0,
+    "dropped_bad_time": 0,
+    "dropped_empty": 38,
+    "dramas_covered": 793,
+    "time_range": [
+      "2026-05-15 20:15:01",
+      "2026-10-02 11:29:08"
+    ]
+  },
+  "ep1_comments": {
+    "raw_rows": 11977,
+    "kept": 11168,
+    "dropped_full_dup": 0,
+    "dropped_biz_dup": 6,
+    "dropped_bad_time": 0,
+    "dropped_empty": 803,
+    "dramas_covered": 800,
+    "time_range": [
+      "2026-05-14 09:41:28",
+      "2026-10-02 11:32:40"
+    ]
+  },
+  "fk_check": {
+    "hot_orphan": 0,
+    "ep1_orphan": 0,
+    "hot_coverage_pct": 99.12,
+    "ep1_coverage_pct": 100.0
+  }
+}

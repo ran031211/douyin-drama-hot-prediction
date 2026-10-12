@@ -1,0 +1,203 @@
+/* =====================================================================
+   tokens.css · 设计变量
+   ---------------------------------------------------------------------
+   浅色工具风：单一品牌色 + 中性灰阶，不用霓虹与玻璃拟态。
+   所有颜色、间距、字号只在此定义，其余样式表一律通过 var() 引用。
+   ===================================================================== */
+:root {
+  /* ---- 中性色阶 ---- */
+  --c-page:        #f5f6f8;
+  --c-surface:     #ffffff;
+  --c-surface-alt: #fafbfc;
+  --c-border:      #e2e5ea;
+  --c-border-strong: #cdd2da;
+  --c-text:        #1e2430;
+  --c-text-2:      #5a6472;
+  --c-text-3:      #8b94a3;
+  --c-text-invert: #ffffff;
+
+  /* ---- 品牌色（单一强调色） ---- */
+  --c-accent:      #2f5fd0;
+  --c-accent-weak: #eaf0fc;
+  --c-accent-dark: #23489f;
+  --grad-accent:   linear-gradient(135deg, #2f5fd0 0%, #6a8bef 100%);
+
+  /* ---- 分档语义色（题材选题） ---- */
+  --c-tier-top:    #c0392b;
+  --c-tier-high:   #d98324;
+  --c-tier-mid:    #7b8494;
+  --c-tier-low:    #2f7f6a;
+
+  /* ---- 概率档位 ---- */
+  --c-level-high:  #c0392b;
+  --c-level-midhigh: #d98324;
+  --c-level-base:  #6b7280;
+  --c-level-low:   #2f7f6a;
+
+  /* ---- 正/负贡献 ---- */
+  --c-pos:         #c0392b;
+  --c-neg:         #2f7f6a;
+
+  /* ---- 特征组 ---- */
+  --c-g-content:   #2f5fd0;
+  --c-g-rating:    #2f7f6a;
+  --c-g-engage:    #7a5cc4;
+  --c-g-text:      #d98324;
+
+  /* ---- 次级填充（图表次级系列等） ---- */
+  --c-accent-soft: #9bb0e0;
+
+  /* ---- 状态底色（verdict / badge） ---- */
+  --c-tint-top:    #fdeceb;
+  --c-tint-high:   #fdf3e6;
+  --c-tint-mid:    #f1f2f4;
+  --c-tint-low:    #ebf5f1;
+
+  /* ---- 背景纹理点 / 顶栏 ---- */
+  --c-page-dots:   rgba(30, 40, 60, .05);
+  --c-header:      rgba(255, 255, 255, .85);
+  color-scheme: light;
+
+  /* ---- 间距 ---- */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+
+  /* ---- 字号 ---- */
+  --fs-xs:  11.5px;
+  --fs-sm:  12.5px;
+  --fs-md:  13.5px;
+  --fs-lg:  16px;
+  --fs-xl:  20px;
+  --fs-2xl: 28px;
+  --fs-3xl: 38px;
+
+  /* ---- 其他 ---- */
+  --radius:    8px;
+  --radius-sm: 5px;
+  --shadow-1:  0 1px 2px rgba(24, 32, 48, .06);
+  --shadow-2:  0 6px 18px rgba(24, 32, 48, .10);
+
+  /* ---- 动效 ---- */
+  --dur-fast: .16s;
+  --dur-med:  .24s;
+  --ease: cubic-bezier(.22, .68, .36, 1);
+  --font-sans: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB",
+               "Source Han Sans SC", system-ui, -apple-system, sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  --layout-max: 1240px;
+}
+
+/* =====================================================================
+   暗色主题
+   ---------------------------------------------------------------------
+   两个入口，内容必须保持同步（改一处记得改另一处）：
+     1. [data-theme="dark"]            —— 手动切换（localStorage / ?theme=）
+     2. @media (prefers-color-scheme)  —— 未手动指定时跟随系统
+   文字对比度已用 tools/contrast_check.py 验证：正文/次要/弱化文字
+   在各自底面上均 ≥ 4.5:1（WCAG AA，从严没有按大号文字 3:1 放水）。
+   ===================================================================== */
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --c-page:        #09090b;
+  --c-surface:     #131316;
+  --c-surface-alt: #1a1a20;
+  --c-border:      #26262e;
+  --c-border-strong: #3a3a46;
+  --c-text:        #fafafa;
+  --c-text-2:      #a1a1aa;
+  --c-text-3:      #8e8e99;
+  /* 暗色下「反色文字」是深色：品牌色本身变亮，深字压亮底（7.9:1） */
+  --c-text-invert: #0a0a0c;
+
+  --c-accent:      #7aa2f7;
+  --c-accent-weak: rgba(122, 162, 247, .13);
+  --c-accent-dark: #a9c1fa;
+  --grad-accent:   linear-gradient(135deg, #5b8cff 0%, #8f7bf0 100%);
+  --c-accent-soft: #4a5878;
+
+  --c-tier-top:    #e8604c;
+  --c-tier-high:   #e5a04b;
+  --c-tier-mid:    #9aa3b2;
+  --c-tier-low:    #4eb598;
+
+  --c-level-high:  #e8604c;
+  --c-level-midhigh: #e5a04b;
+  --c-level-base:  #9aa3b2;
+  --c-level-low:   #4eb598;
+
+  --c-pos:         #e8604c;
+  --c-neg:         #4eb598;
+
+  --c-g-content:   #7aa2f7;
+  --c-g-rating:    #4eb598;
+  --c-g-engage:    #a78bfa;
+  --c-g-text:      #e5a04b;
+
+  --c-tint-top:    #2a1715;
+  --c-tint-high:   #261c10;
+  --c-tint-mid:    #1d1d24;
+  --c-tint-low:    #0f211c;
+
+  --c-page-dots:   rgba(255, 255, 255, .045);
+  --c-header:      rgba(19, 19, 22, .85);
+
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, .45);
+  --shadow-2: 0 6px 18px rgba(0, 0, 0, .55);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]):not([data-theme="dark"]) {
+    color-scheme: dark;
+
+    --c-page:        #09090b;
+    --c-surface:     #131316;
+    --c-surface-alt: #1a1a20;
+    --c-border:      #26262e;
+    --c-border-strong: #3a3a46;
+    --c-text:        #fafafa;
+    --c-text-2:      #a1a1aa;
+    --c-text-3:      #8e8e99;
+    --c-text-invert: #0a0a0c;
+
+    --c-accent:      #7aa2f7;
+    --c-accent-weak: rgba(122, 162, 247, .13);
+    --c-accent-dark: #a9c1fa;
+    --grad-accent:   linear-gradient(135deg, #5b8cff 0%, #8f7bf0 100%);
+    --c-accent-soft: #4a5878;
+
+    --c-tier-top:    #e8604c;
+    --c-tier-high:   #e5a04b;
+    --c-tier-mid:    #9aa3b2;
+    --c-tier-low:    #4eb598;
+
+    --c-level-high:  #e8604c;
+    --c-level-midhigh: #e5a04b;
+    --c-level-base:  #9aa3b2;
+    --c-level-low:   #4eb598;
+
+    --c-pos:         #e8604c;
+    --c-neg:         #4eb598;
+
+    --c-g-content:   #7aa2f7;
+    --c-g-rating:    #4eb598;
+    --c-g-engage:    #a78bfa;
+    --c-g-text:      #e5a04b;
+
+    --c-tint-top:    #2a1715;
+    --c-tint-high:   #261c10;
+    --c-tint-mid:    #1d1d24;
+    --c-tint-low:    #0f211c;
+
+    --c-page-dots:   rgba(255, 255, 255, .045);
+    --c-header:      rgba(19, 19, 22, .85);
+
+    --shadow-1: 0 1px 2px rgba(0, 0, 0, .45);
+    --shadow-2: 0 6px 18px rgba(0, 0, 0, .55);
+  }
+}

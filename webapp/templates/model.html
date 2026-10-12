@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-head">
+  <h1 class="page-head__title">模型评估</h1>
+  <span class="page-head__desc">论文口径评测结果与部署模型在线回测</span>
+</div>
+
+<section class="cols cols--2">
+  <div class="card">
+    <div class="card__head">
+      <span class="card__title">ROC 曲线</span>
+      <span class="card__note">hold-out 测试集</span>
+    </div>
+    <div class="card__body"><div class="chart" id="chart-roc"></div></div>
+  </div>
+  <div class="card">
+    <div class="card__head">
+      <span class="card__title">PR 曲线</span>
+      <span class="card__note">正类占比 20%</span>
+    </div>
+    <div class="card__body"><div class="chart" id="chart-pr"></div></div>
+  </div>
+</section>
+
+<section class="cols cols--2">
+  <div class="card">
+    <div class="card__head"><span class="card__title">分类模型对比</span></div>
+    <div class="card__body card__body--flush">
+      <table class="table" id="tbl-clf">
+        <thead>
+          <tr><th>模型</th><th class="is-num">AUC</th><th class="is-num">交叉验证 AUC</th>
+              <th class="is-num">F1</th><th class="is-num">AP</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card__head"><span class="card__title">回归模型对比</span></div>
+    <div class="card__body card__body--flush">
+      <table class="table" id="tbl-reg">
+        <thead>
+          <tr><th>模型</th><th class="is-num">R²</th><th class="is-num">MAE</th>
+              <th class="is-num">RMSE</th><th class="is-num">热度 MAE（万）</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="cols cols--2">
+  <div class="card">
+    <div class="card__head">
+      <span class="card__title">特征组增量消融</span>
+      <span class="card__note">逐组追加后的 AUC</span>
+    </div>
+    <div class="card__body"><div class="chart" id="chart-ablation"></div></div>
+  </div>
+  <div class="card">
+    <div class="card__head">
+      <span class="card__title">特征组贡献占比</span>
+      <span class="card__note">按增益重要性</span>
+    </div>
+    <div class="card__body"><div class="chart" id="chart-groups"></div></div>
+  </div>
+</section>
+
+<section class="cols cols--2-1">
+  <div class="card">
+    <div class="card__head">
+      <span class="card__title">SHAP 全局重要性</span>
+      <span class="card__note">平均绝对 SHAP 值</span>
+    </div>
+    <div class="card__body card__body--flush">
+      <div class="table__scroll">
+        <table class="table" id="tbl-shap">
+          <thead><tr><th>排名</th><th>特征</th><th class="is-num">平均绝对 SHAP</th><th>方向</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="stack">
+    <div class="card">
+      <div class="card__head"><span class="card__title">稳健性检验</span></div>
+      <div class="card__body" id="robust-body"><div class="empty">加载中…</div></div>
+    </div>
+    <div class="card">
+      <div class="card__head"><span class="card__title">在线回测</span></div>
+      <div class="card__body" id="backtest-body"><div class="empty">加载中…</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="card">
+  <div class="card__head">
+    <span class="card__title">回测预测排名前 10</span>
+    <span class="card__note">在 hold-out 测试集内按预测概率取前 10</span>
+  </div>
+  <div class="card__body card__body--flush">
+    <table class="table">
+      <thead>
+        <tr><th>剧名</th><th>题材</th><th class="is-num">预测爆款概率</th>
+            <th class="is-num">实际热度（万）</th><th>真实标签</th></tr>
+      </thead>
+      <tbody id="tbl-top"></tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}
+
+{% block vendor %}<script src="{{ url_for('static', filename='vendor/echarts.min.js') }}"></script>{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+<script src="{{ url_for('static', filename='js/model.js') }}"></script>
+{% endblock %}

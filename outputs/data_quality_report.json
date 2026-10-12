@@ -1,0 +1,105 @@
+{
+  "raw_audit": {
+    "drama_list": {
+      "rows": 800,
+      "cols": 16,
+      "dup_full": 0,
+      "missing": {
+        "hot_rating_avg": 7
+      },
+      "missing_rate_pct": 0.055
+    },
+    "hot_comments": {
+      "rows": 6769,
+      "cols": 10,
+      "dup_full": 0,
+      "missing": {},
+      "missing_rate_pct": 0.0
+    },
+    "ep1_comments": {
+      "rows": 11168,
+      "cols": 9,
+      "dup_full": 0,
+      "missing": {},
+      "missing_rate_pct": 0.0
+    }
+  },
+  "genre_tags": {
+    "total": 48,
+    "kept": 20,
+    "kept_list": [
+      "逆袭",
+      "都市",
+      "剧情",
+      "乡村",
+      "年代",
+      "重生",
+      "豪门",
+      "穿越",
+      "脑洞",
+      "古代",
+      "种田",
+      "恋爱",
+      "异能",
+      "系统",
+      "萌宝",
+      "总裁",
+      "架空",
+      "玄幻",
+      "宫廷",
+      "职场"
+    ],
+    "long_tail_share_pct": 4.04
+  },
+  "outlier_drama_episodes": {
+    "episodes": {
+      "lower": 18.51,
+      "upper": 500.0,
+      "n_flag": 9,
+      "rate_pct": 1.125,
+      "clipped": true
+    }
+  },
+  "outlier_drama_heat": {
+    "heat_value": {
+      "lower": 40301413.24,
+      "upper": 55958224.07,
+      "n_flag": 21,
+      "rate_pct": 2.625,
+      "clipped": false
+    }
+  },
+  "hot_comment_agg": {
+    "dramas": 793,
+    "avg_comments": 8.54,
+    "avg_rating": 8.167,
+    "avg_digg_mean": 24.12
+  },
+  "ep1_comment_agg": {
+    "dramas": 800,
+    "avg_comments": 13.96,
+    "avg_urge_ratio": 0.0818,
+    "avg_pos_ratio": 0.2641,
+    "avg_neg_ratio": 0.0388
+  },
+  "label": {
+    "quantile": 0.8,
+    "heat_threshold": 48148668.4,
+    "positive_rate_pct": 20.0,
+    "heat_min": 44296428,
+    "heat_max": 68491671,
+    "heat_median": 46610593,
+    "log_heat_std": 0.0238
+  },
+  "dataset": {
+    "rows": 800,
+    "cols": 75,
+    "n_features": 64,
+    "groups": {
+      "内容属性": 40,
+      "观众口碑": 5,
+      "评论互动": 13,
+      "文本态度": 6
+    }
+  }
+}
